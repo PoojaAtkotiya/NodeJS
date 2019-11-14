@@ -17,7 +17,7 @@ yargs.command({
         },
         body: {
             describe: 'Body for add command',
-            demandOption: true,
+            //demandOption: true,
             type: 'string'
         }
     },
@@ -49,7 +49,8 @@ yargs.command({
     command: 'list',
     describe: "List Command",
     handler: () => {
-        console.log("List Command here")
+        //console.log("List Command here");
+        notesUtility.listNotes();
     }
 });
 
@@ -57,8 +58,16 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read Command here',
-    handler: () => {
-        console.log("read command here");
+    builder: {
+        title: {
+            describe: "Read Note Command Title",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: (args) => {
+        //console.log("read command here");
+        notesUtility.readNote(args.title);
     }
 });
 
